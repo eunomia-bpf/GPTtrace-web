@@ -149,7 +149,7 @@ export default function Home() {
         <div className="mt-0 flex flex-col items-center justify-center sm:mt-5">
           <div className="mt-0 text-center text-sm">
             <b>Your one-click solution to transforming natural language into a bpftrace program!</b> <br></br>
-            <u>Paste the generated bpftrace code after "sudo bpftrace" to run it. For multi-line programs, you can save it as a `bpftrace.bt` file.</u>
+            <u>Paste the generated bpftrace program after `sudo bpftrace` to run it. For multi-line programs, you can save it as a `bpftrace.bt` file.</u>
           </div>
         </div>
 

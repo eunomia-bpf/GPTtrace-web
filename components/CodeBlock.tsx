@@ -44,7 +44,6 @@ export const CodeBlock: FC<Props> = ({
         extensions={[StreamLanguage.define(go)]}
         theme={tokyoNight}
         onChange={(value) => onChange(value)}
-        linewrapping="true"
       />
     </div>
   );
