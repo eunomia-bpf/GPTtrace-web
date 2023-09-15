@@ -1,9 +1,5 @@
+import { ParsedEvent, ReconnectInterval } from '@/types/types';
 import { getExamples } from './eBPFDatabase';
-import {
-  createParser,
-  ParsedEvent,
-  ReconnectInterval,
-} from 'eventsource-parser';
 
 const createPrompt = async (
   query: string,
@@ -69,6 +65,8 @@ export const OpenAIStream = async (
   model: string,
   key: string,
 ) => {
+  const {createParser} = await import("eventsource-parser");
+
   const prompt = await createPrompt(help_doc, key);
   const system = { role: 'system', content: prompt };
 

@@ -7,6 +7,7 @@ import { TextBlock } from '@/components/TextBlock';
 import { OpenAIModel, TranslateBody } from '@/types/types';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
+import Header from '@/components/Header';
 
 export default function Home() {
   const start = "This is the start";
@@ -131,16 +132,23 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
-        <title>Code Generate</title>
-        <meta
-          name="description"
-          content="Use AI to translate code from one language to another."
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Bpftrace Program Generate</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header />
+      <a
+          className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-md transition-colors hover:bg-gray-100 mb-5 my-5"
+          href="https://github.com/yunwei37/AI-GitHub-Profile-Generator"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+        <p>Star on GitHub</p>
+      </a>
+      <h1 className="sm:text-6xl text-4xl max-w-[708px] font-bold text-slate-900 text-center">
+        Generate GitHub Profile README with GPT
+      </h1>
       <div className="flex h-full min-h-screen flex-col items-center bg-[#0E1117] px-4 pb-20 text-neutral-200 sm:px-10">
         <div className="mt-2 flex flex-col items-center justify-center sm:mt-8">
           <div className="text-4xl font-bold">Bpftrace Program Generate</div>
@@ -181,7 +189,7 @@ export default function Home() {
           <div className="h-100 flex flex-col justify-center space-y-2 sm:w-2/4">
             {/* <div className="text-center text-xl font-bold">Input</div> */}
 
-            <div className="w-full rounded-md bg-[#1F2937] px-4 py-2 text-neutral-200" align='center'>
+            <div className="w-full rounded-md bg-[#1F2937] px-4 py-2 text-neutral-200" style={{ display: 'flex', alignItems: 'center' }}>
               Program Description
             </div>
 
@@ -206,16 +214,7 @@ export default function Home() {
             )}
           </div>
           <div className="mt-8 flex h-full flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
-            {/* <div className="text-center text-xl font-bold">Bpftrace Program</div> */}
-
-            {/* <LanguageSelect
-              language={outputLanguage}
-              onChange={(value) => {
-                setOutputLanguage(value);
-                setOutputCode('');
-              }}
-            /> */}
-            <div className="w-full rounded-md bg-[#1F2937] px-4 py-2 text-neutral-200" align='center'>
+            <div className="w-full rounded-md bg-[#1F2937] px-4 py-2 text-neutral-200" style={{ display: 'flex', alignItems: 'center' }}>
               Bpftrace Program
             </div>
             {outputLanguage === 'Bash' ? (
@@ -227,6 +226,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
