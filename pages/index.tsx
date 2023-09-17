@@ -2,12 +2,13 @@ import { APIKeyInput } from '@/components/APIKeyInput';
 import { CodeBlock } from '@/components/CodeBlock';
 import { LanguageSelect } from '@/components/LanguageSelect';
 import {preview_input_code, preview_output_code} from "@/components/ScriptTemplate"
-import { ModelSelect } from '@/components/ModelSelect';
+import { BPFSelect, ModelSelect } from '@/components/ModelSelect';
 import { TextBlock } from '@/components/TextBlock';
-import { OpenAIModel, TranslateBody } from '@/types/types';
+import { OpenAIModel, TranslateBody, BPF } from '@/types/types';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   const start = "This is the start";
@@ -17,6 +18,7 @@ export default function Home() {
   const [inputCode, setInputCode] = useState<string>(preview_input_code);
   const [outputCode, setOutputCode] = useState<string>(preview_output_code);
   const [model, setModel] = useState<OpenAIModel>('gpt-3.5-turbo');
+  const [bpfType, setBPF] = useState<BPF>('libbpf');
   const [loading, setLoading] = useState<boolean>(false);
   const [hasTranslated, setHasTranslated] = useState<boolean>(false);
   const [apiKey, setApiKey] = useState<string>('');
@@ -133,31 +135,21 @@ export default function Home() {
 
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
-      <Head>
+      {/* <Head>
         <title>Bpftrace Program Generate</title>
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Head> */}
       <Header />
-      <a
-          className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm shadow-md transition-colors hover:bg-gray-100 mb-5 my-5"
-          href="https://github.com/yunwei37/AI-GitHub-Profile-Generator"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        <p>Star on GitHub</p>
-      </a>
-      <h1 className="sm:text-6xl text-4xl max-w-[708px] font-bold text-slate-900 text-center">
-        Generate GitHub Profile README with GPT
-      </h1>
-      <div className="flex h-full min-h-screen flex-col items-center bg-[#0E1117] px-4 pb-20 text-neutral-200 sm:px-10">
-        <div className="mt-2 flex flex-col items-center justify-center sm:mt-8">
-          <div className="text-4xl font-bold">Bpftrace Program Generate</div>
-        </div>
+ 
+      {/* <div className="flex h-full min-h-screen flex-col items-center bg-[#0E1117] px-4 pb-20 text-neutral-200 sm:px-10"> */}
+        {/* <h1 className="sm:text-6xl text-4xl max-w-[708px] font-bold text-slate-900 text-center">
+          Generate GitHub Profile README with GPT
+        </h1> */}
 
         <div className="mt-0 flex flex-col items-center justify-center sm:mt-5">
           <div className="mt-0 text-center text-sm">
             <b>Your one-click solution to transforming natural language into a bpftrace program!</b> <br></br>
-            <u>Paste the generated bpftrace program after `sudo bpftrace` to run it. For multi-line programs, you can save it as a `bpftrace.bt` file.</u>
+            <u>Save the generated multi-line bpftrace program as a `bpftrace.bt` file then execute it with `sudo bpftrace bpftrace.bt`.</u>
           </div>
         </div>
 
@@ -167,6 +159,8 @@ export default function Home() {
 
         <div className="mt-2 flex items-center space-x-2">
           <ModelSelect model={model} onChange={(value) => setModel(value)} />
+
+          <BPFSelect bpfType={bpfType} onChange={(value) => setBPF(value)} />
 
           <button
             className="w-[140px] cursor-pointer rounded-md bg-violet-500 px-4 py-2 font-bold hover:bg-violet-600 active:bg-violet-700"
@@ -185,35 +179,40 @@ export default function Home() {
             : 'Enter the description of the program and click "Generate"'}
         </div>
 
-        <div className="mt-6 flex w-full max-w-[1200px] flex-col justify-between sm:flex-row sm:space-x-4">
-          <div className="h-100 flex flex-col justify-center space-y-2 sm:w-2/4">
-            {/* <div className="text-center text-xl font-bold">Input</div> */}
+        {/* <div className="mt-6 flex w-full max-w-[1200px] flex-col justify sm:flex-row sm:space-x-4"> */}
 
-            <div className="w-full rounded-md bg-[#1F2937] px-4 py-2 text-neutral-200" style={{ display: 'flex', alignItems: 'center' }}>
+          <div className="h-100 flex flex-col max-w-[1400px] justify-center space-y-2 sm:w-2/4">
+            {/* <div className="w-full rounded-md bg-[#1F2937] px-4 py-2 text-neutral-200" style={{ display: 'flex', alignItems: 'center' }}>
               Program Description
-            </div>
+            </div> */}
+            <input
+              type="text"
+              onChange={(e) => setInputCode(e.target.value)}
+              className="w-full rounded-md bg-[#1F2937] px-4 py-2 text-neutral-200" style={{ display: 'flex', alignItems: 'center' }}
+              placeholder="Enter the description of the bpf program."
+            />
 
             {inputLanguage === 'Natural Language' ? (
               <TextBlock
-                text={inputCode}
+                text={outputCode}
                 editable={!loading}
                 onChange={(value) => {
-                  setInputCode(value);
+                  setOutputCode(value);
                   setHasTranslated(false);
                 }}
               />
             ) : (
               <CodeBlock
-                code={inputCode}
+                code={outputCode}
                 editable={!loading}
                 onChange={(value) => {
-                  setInputCode(value);
+                  setOutputCode(value);
                   setHasTranslated(false);
                 }}
               />
             )}
           </div>
-          <div className="mt-8 flex h-full flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
+          {/* <div className="mt-8 flex h-full flex-col justify-center space-y-2 sm:mt-0 sm:w-2/4">
             <div className="w-full rounded-md bg-[#1F2937] px-4 py-2 text-neutral-200" style={{ display: 'flex', alignItems: 'center' }}>
               Bpftrace Program
             </div>
@@ -223,9 +222,9 @@ export default function Home() {
               <CodeBlock code={`${outputCode}`} />
             )}
 
-          </div>
-        </div>
-      </div>
+          </div> */}
+        {/* </div> */}
+        <Footer />
     </div>
   );
 }

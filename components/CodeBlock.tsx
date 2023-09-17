@@ -38,15 +38,17 @@ export const CodeBlock: FC<Props> = ({
       >
         {copyText}
       </button>
+      <div className="rounded-md">
+        <CodeMirror
+          editable={editable}
+          value={code}
+          minHeight="300px"
+          // extensions={[StreamLanguage.define(go)]}
+          theme={tokyoNight}
+          onChange={(value) => onChange(value)}
+        />
+      </div>
 
-      <CodeMirror
-        editable={editable}
-        value={code}
-        minHeight="300px"
-        // extensions={[StreamLanguage.define(go)]}
-        theme={tokyoNight}
-        onChange={(value) => onChange(value)}
-      />
     </div>
   );
 };
