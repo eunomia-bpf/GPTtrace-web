@@ -18,7 +18,7 @@ export default function Home() {
   const [inputCode, setInputCode] = useState<string>(preview_input_code);
   const [outputCode, setOutputCode] = useState<string>(preview_output_code);
   const [model, setModel] = useState<OpenAIModel>('gpt-3.5-turbo');
-  const [bpfType, setBPF] = useState<BPF>('libbpf');
+  const [bpfType, setBPF] = useState<BPF>('bpftrace');
   const [loading, setLoading] = useState<boolean>(false);
   const [hasTranslated, setHasTranslated] = useState<boolean>(false);
   const [apiKey, setApiKey] = useState<string>('');
