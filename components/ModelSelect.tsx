@@ -24,8 +24,8 @@ export const ModelSelect: FC<Props> = ({ model, onChange }) => {
         onChange={handleChange}
       >
         <optgroup label="GPT">
-          <option value="gpt-3.5">GPT-3.5</option>
           <option value="gpt-4">GPT-4</option>
+          <option value="gpt-3.5">GPT-3.5</option>
         </optgroup>
         <optgroup label="Hugging Face">
           <option value="Wizardlm">Wizardlm</option>
@@ -49,8 +49,8 @@ export const BPFSelect: FC<BPFProps> = ({ bpfType, onChange }) => {
         value={bpfType}
         onChange={handleChange}
       >
-        <option value="libbpf">libbpf</option>
         <option value="bpftrace">bpftrace</option>
+        <option value="libbpf">libbpf</option>
       </select>
     </div>
   );
