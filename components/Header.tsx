@@ -14,11 +14,11 @@ export default function Header() {
           height={20}
         />
         <h1 className="sm:text-4xl text-2xl font-bold ml-2 tracking-tight">
-          Github Profile Generator
+          GPT2bpftrace: Transforming natural language into a bpftrace program online
         </h1>
       </Link>
       <a
-        href="https://github.com/yunwei37/AI-GitHub-Profile-Generator"
+        href="https://github.com/eunomia-bpf/GPT2Bpftrace"
         target="_blank"
         rel="noreferrer"
       >
