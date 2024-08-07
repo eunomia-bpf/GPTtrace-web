@@ -6,6 +6,8 @@ Welcome to GPT2Bpftrace! Harness the power of AI to automatically generate bpftr
   <img src="./public/gpt2bpftrace.png" alt="Bpftrace Program Generation" width="600"/>
 </p>
 
+### **Checkout our related paper [Kgent: Kernel Extensions Large Language Model Agent](https://dl.acm.org/doi/10.1145/3672197.3673434) in eBPF'24!**
+
 ## 🌐 **Try It Online**
 
 Why wait? Test it right now at [GPT-2-Bpftrace](https://gpt-2-bpftrace.vercel.app/).
