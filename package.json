@@ -15,10 +15,12 @@
     "@uiw/react-codemirror": "^4.19.11",
     "endent": "^2.1.0",
     "eventsource-parser": "^1.0.0",
-    "langchain": "^0.0.148",
     "next": "15.5.29",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "@langchain/classic": "^1.0.62",
+    "@langchain/core": "^1.5.0",
+    "@langchain/openai": "^1.8.5"
   },
   "devDependencies": {
     "@types/node": "18.15.11",
